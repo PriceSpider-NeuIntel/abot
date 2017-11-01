@@ -206,6 +206,7 @@ namespace Abot.Core
         protected virtual HttpWebRequest BuildRequestObject(Uri uri)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             request.AllowAutoRedirect = _config.IsHttpRequestAutoRedirectsEnabled;
 
             if (string.IsNullOrEmpty(_config.AcceptHeader))
